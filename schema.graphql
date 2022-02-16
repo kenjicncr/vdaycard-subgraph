@@ -1,0 +1,53 @@
+type Transaction @entity {
+
+  id: ID! # Transaction hash
+
+  value: BigInt!
+
+  to: String!
+
+  from: String!
+
+  contractAddress: String!
+}
+
+type VDayCard @entity {
+  id: ID!
+
+  sender: String!
+
+  receiver: String!
+
+  message: String
+
+  nickname: String
+
+  response: VDayCardResponse @index
+}
+
+type VDayCardResponse @entity {
+  id: ID!
+
+  sender: String!
+
+  receiver: String!
+
+  state: Boolean
+
+  message: String
+
+  nickname: String
+}
+
+
+type Approval @entity {
+  id: ID! # Transaction hash
+
+  value: BigInt!
+
+  owner: String!
+
+  spender: String!
+
+  contractAddress: String!
+}
