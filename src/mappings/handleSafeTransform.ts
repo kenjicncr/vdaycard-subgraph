@@ -4,11 +4,11 @@ import { BigNumber } from "ethers";
 import { VDayCard } from '../types/models'
 
 type SafeTransferFromVCardArgs = [string, string, BigNumber, string, string] & { 
-  sender: string; 
-  receiver: string; 
+  from: string; 
+  to: string; 
   tokenId: BigNumber;
-  message: string;
-  nickname: string;
+  message_: string;
+  nickname_: string;
 };
 
 export async function handleSafeTransferFrom(event: MoonbeamCall<SafeTransferFromVCardArgs>): Promise<void> {
@@ -24,11 +24,11 @@ export async function handleSafeTransferFrom(event: MoonbeamCall<SafeTransferFro
 
   } else {
     let newVCard = new VDayCard(_tokenIdStr)
-
-    newVCard.message = args.message
-    newVCard.nickname = args.nickname
-    newVCard.sender = args.sender
-    newVCard.receiver = args.receiver
+ 
+    newVCard.message = args.message_
+    newVCard.nickname = args.nickname_
+    newVCard.sender = args.from
+    newVCard.receiver = args.to
 
     await newVCard.save()
 
